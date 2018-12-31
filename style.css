@@ -1,0 +1,41 @@
+body {
+  font-family: Rubik;
+  font-style: normal;
+}
+#wrapper {
+	max-width: 1920 px;
+	height: 1080 px;
+	margin: 0 auto;
+	padding: 0 px;
+}
+
+.main_menu {
+	padding: 5px 0 5px 0;
+  color: white;
+	text-align: center;
+	line-height: 32px;
+	background-color: #333333;
+}
+ul.main_menu {
+	margin-top: 15px;
+}
+.main_menu li {
+	display: inline;
+	padding: 0 10px 0 10px;
+	font-size: 16px;
+	font-weight: 300;
+  font-size: 20px;
+}
+.main_menu a {
+	text-decoration: none;
+	color: white;
+	padding-left: 8px;
+	font-variant: small-caps;
+}
+.main_menu b{
+	text-decoration: none;
+	color: white;
+	padding-left: : 100 px;
+	font-variant: small-caps;
+
+}
