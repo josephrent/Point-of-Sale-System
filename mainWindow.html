@@ -1,22 +1,214 @@
 <!DOCTYPE html>
-
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <link href = "style.css" type="text/css" rel="stylesheet">
-  <title>POS System</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Point of Sale System</title>
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<script src=" https://code.jquery.com/jquery-3.3.1.min.js"> </script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+	<link href='https://fonts.googleapis.com/css?family=Rubik' rel='stylesheet'>
+	<link href="style.css" rel="stylesheet">
 </head>
-<body>
-  <div id="wrapper";>
-    <nav class = "main_menu">
-      <ul>
-        <li><a href = "#"> Date</a></li>
-        <li><b href = "#"> Time</b> </li>
-        <li><a href = "#"> Order#</a> </li>
-        <li><a href = "#"> search bar</a></li>
-        <li><a href = "#"> profile button</a> </li>
-      </ul>
-    </nav>
-  </div>
+<body style="background-color: #d3d3d3">
+
+<!-- Top Bar -->
+<nav class ="navbar navbar-expand-md navbar-dark sticky-top">
+	<div class = "container-fluid">
+		<a class = "navbar-brand" href="#"><img src="img/return-button.png"></a>
+		<button class="navbar-toggler" type-"button" data-toggle="collapse"
+		data-target=#navbarResponsive">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarResponsive">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active">
+					<a class="nav-link disabled" style="color: white; font-size: 26px; margin-left: 50px">
+						<script>
+						var now = new Date();
+						var day = now.getDate();
+						var year = now.getFullYear();
+						var month = now.getMonth() + 1;
+						var date = month + "/" + day + "/" + year;
+						document.write(date);
+						</script>
+					</a>
+				</li>
+				<li class="nav-item active">
+					<a id ="clock" class="nav-link disabled" style="font-size: 26px; ; margin-left: 90px; color: white">
+						<script>
+							var clock = document.getElementById("clock");
+							var time = new Date().toLocaleTimeString();
+							clock.innerHTML = time;
+							setInterval(function() {
+								clock.innerHTML = new Date().toLocaleTimeString();
+							},1000);
+						</script>
+						</a>
+				</li>
+				<li class="nav-item active" style="font-size: 26px;;margin-left: 220px">
+					<a class="nav-link disabled">Order #: 420</a>
+				<li class="nav-item dropdown" style="font-size: 26px; margin-left: 550px;">
+	        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
+					  role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	          Profile
+	        </a>
+	        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+	          <a class="dropdown-item" href="#">Add to inventory</a>
+	          <a class="dropdown-item" href="#">Purchase History</a>
+	          <a class="dropdown-item" href="#">Staff</a>
+	          <a class="dropdown-item" href="#">Analytics</a>
+	          <a class="dropdown-item" href="#">Advanced Settings</a>
+	          <a class="dropdown-item" href="#">Sign out</a>
+	        </div>
+	      </li>
+			</ul>
+		</div>
+	</div>
+</nav>
+<div class="mainBox">
+<div class="headerBox"> <p style="text-align: center; font-size: 24px; margin-top: 0px"> Order </p> </div>
+<div class="boxContainer" style="color: white">
+	<div id="scrollBox"class="nav nav-Scrolling" style="color:black; width: 480px;margin-top: 10px;">
+		<ul style="list-style-type:none" id="dynamic-list" class=" container-fluid">
+			<div class="row align-items-start" style="text-decoration: underline;">
+				<div class="col">Item: </div> <div class="col"> Qty. </div> <div class="col"> Price: </div>
+			</div>
+		</ul>
+	</div>
+	<div class="costBox">
+		<div class="container py-0">
+			<div class="row justify-content-between py-0">
+				<div class="col-md-4 py-1">Subtotal:</div>
+				<div class="col-md-4 py-1">$99.99</div>
+			</div>
+			<div class="container py-0">
+				<div class="row justify-content-between py-0">
+					<div class="col-md-4 py-1">Tax:</div>
+					<div class="col-md-4 py-1 ">$0.08</div>
+				</div>
+			</div>
+			<div class="container py-0">
+				<div class="row justify-content-between py-0">
+					<div class="col-md-4 py-1">Total:</div>
+					<div class="col-md-4 py-1">$100.07</div>
+				</div>
+			</div>
+		<button class="checkoutButton">Checkout</button>
+		</div>
+	</div>
+</div>
+</div>
+<div class="searchBoxButton">
+
+<input id="itemToAdd" onkeyup="filterList()" type="search"placeholder="Search for items">
+<button id="addButton" style = "margin-left: 5px; margin-bottom: 10px;"class="" type="button">Search</button>
+<script>
+document.getElementById("itemToAdd").addEventListener("keypress", function (e){
+	if(e.key = 'Enter') {
+		document.getElementById("addButton").click();
+	}
+});
+</script>
+<ul id="searchList"></ul></div>
+<script> //initial search list query
+		var mysql = require("mysql");
+		var itemName = document.getElementById("itemToAdd").value;
+		var connection= mysql.createConnection({
+			host: "localhost",
+			user: "root",
+			password: "//////",
+			database: "POS_inventory"
+		});
+		connection.connect((err) => {
+			if(err){
+				return console.log(err.stack);
+			}
+			console.log("Connection successfully established");
+		});
+		var shownItems;
+		if( $('#itemToAdd').val()=="") {
+			shownItems = 'SELECT * FROM inventory';
+		}
+		else {
+			shownItems = 'SELECT * FROM inventory WHERE name LIKE %'+ connection.escape(itemName) + "%";
+		}
+		//var showAllItems = 'SELECT * From inventory';
+		connection.query(shownItems, function(err, data, fields) {
+			for(var i = 0; i < data.length; ++i) {
+				$("<li><a href = '#'>" + data[i].name + "</a></li>").appendTo("ul#searchList");
+			}
+	});
+	connection.end(() => {console.log("Connection succesfully closed")});
+	function filterList() {
+  // Declare variables
+  var input, filter, ul, li, a, i, txtValue;
+  input = document.getElementById('itemToAdd');
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("searchList");
+  li = ul.getElementsByTagName('li');
+
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < li.length; i++) {
+    a = li[i].getElementsByTagName("a")[0];
+    txtValue = a.textContent || a.innerText;
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+  }
+}
+</script>
+
+
+<script> //script for sending query through search bar
+		document.getElementById("addButton").addEventListener("click", function() {
+		 //initialize db connection
+	 	 var mysql = require("mysql");
+		 var itemName = document.getElementById("itemToAdd").value;
+	 	 var connection= mysql.createConnection({
+	 		 host: "localhost",
+	 		 user: "root",
+	 		 password: "/////!",
+	 		 database: "POS_inventory"
+	 	 });
+	 	 connection.connect((err) => {
+	 		 if(err){
+	 			 return console.log(err.stack);
+	 		 }
+	 		 console.log("Connection successfully established");
+	 	 });
+		 //Execute queries
+		 var itemName = $('#itemToAdd').val();
+		 var queryString = 'SELECT * FROM inventory WHERE name LIKE '+ connection.escape(itemName);
+		 connection.query(queryString,function (err2, data, fields) {
+				if(data.length) {
+						var itemPrice = data[0].price;
+						var itemQty = data[0].quantity;
+						if(itemName.length) {
+							$("<li><div class='row justify-content-between py-0'><div class='col-4'> " +
+								 itemName + "</div> <div class='col-4'>" + itemQty + "</div> <div class='col-4'>$" + itemPrice.toFixed(2) +
+								 "</div> </div> </li>").appendTo('ul#dynamic-list');
+						}
+				}
+			});
+		 //end db connection
+		 connection.end(() => {
+			 console.log("Connection successfully closed")
+		 });
+}, false)
+</script>
+
 </body>
 </html>

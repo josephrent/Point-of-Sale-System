@@ -1,7 +1,7 @@
 const electron = require('electron');
 const url = require('url');
 const path = require('path');
-const {app, BrowserWindow, Menu} = electron;
+const {app, BrowserWindow, Menu, ipcMain} = electron;
 
 let mainWindow;
 let addWindow;
@@ -37,6 +37,11 @@ function createAddWindow(){
 	}));
 }
 
+//Catch item Search
+ipcMain.on('item:add', function(e, item) {
+	
+});
+
 //Create menu template
 const mainMenuTemplate = [
 	{
@@ -61,3 +66,20 @@ const mainMenuTemplate = [
 	}
 
 ]
+if(process.env.NODE_ENV!== 'production') {
+	mainMenuTemplate.push({
+		label: 'Developer Tools',
+		submenu: [
+			{
+				label: 'Toggle DevTools',
+				accelerator: process.platform == 'darwin' ? 'Command+I' : 'Ctrl+I',
+				click(item, focusedWindow) {
+					focusedWindow.toggleDevTools();
+				}
+			},
+			{
+				role: 'reload'
+			}
+		]
+	});
+}
